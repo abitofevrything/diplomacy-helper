@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "diplomacy-helper"
+version = "0.1.0"
+description = "A Discord bot for helping to manage games of Diplomacy"
+authors = ["Abitofevrything <mylo.fawcett@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "diplomacy_helper"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+"discord.py" = "^2.0.1"
+logging = "^0.4.9.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
