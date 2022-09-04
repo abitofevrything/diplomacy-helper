@@ -2,11 +2,16 @@ import asyncio
 import os
 
 import discord
-from discord import app_commands, utils
+from discord import utils
 from discord.ext import commands
+
+from commands.request import request
+from database import setup_database
 
 async def main():
     utils.setup_logging()
+
+    setup_database()
 
     intents = discord.Intents.default()
     intents.message_content = True
@@ -16,15 +21,18 @@ async def main():
         intents=intents,
     )
 
-    @app_commands.command()
-    @app_commands.guilds(769879283677921280)
-    async def pang(interaction: discord.Interaction):
-        await interaction.response.send_message('Pong!')
-
-    bot.tree.add_command(pang)
-
+    bot.tree.add_command(request)
+    
     await bot.login(os.environ['TOKEN'])
-    await bot.tree.sync(guild=discord.Object(id=769879283677921280))
+
+    if 'GUILD' in os.environ:
+        guild = discord.Object(id=int(os.environ['GUILD']))
+
+        bot.tree.copy_global_to(guild=guild)
+        await bot.tree.sync(guild=guild)
+    else:
+        await bot.tree.sync()
+    
     await bot.connect()
 
 if __name__ == "__main__":
