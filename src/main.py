@@ -5,7 +5,7 @@ import discord
 from discord import utils
 from discord.ext import commands
 
-from commands.request import request
+from commands.sign_up import sign_up
 from database import setup_database
 
 async def main():
@@ -21,7 +21,7 @@ async def main():
         intents=intents,
     )
 
-    bot.tree.add_command(request)
+    bot.tree.add_command(sign_up)
     
     await bot.login(os.environ['TOKEN'])
 

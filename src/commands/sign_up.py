@@ -4,8 +4,8 @@ from discord import app_commands
 
 from country import Country
 
-@app_commands.command()
-async def request(
+@app_commands.command(name='sign-up')
+async def sign_up(
     interaction: discord.Interaction,
     first_country: Country,
     second_country: Country=None,
