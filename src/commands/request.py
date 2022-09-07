@@ -46,6 +46,22 @@ async def request(
                 color=discord.Color.red(),
             ))
 
+        other_requests = db.execute("""
+            SELECT COUNT(*)
+                FROM requests
+                WHERE
+                    phase = :phase;
+        """, {
+            'phase': phase,
+        }).fetchone()[0]
+
+        if other_requests >= len(Country):
+            return await interaction.response.send_message(embed=discord.Embed(
+                title='Maximum number of countries reached',
+                description='There are no longer any countries left to assign.',
+                color=discord.Color.red(),
+            ))
+
         id = db.execute("""
             INSERT INTO requests (
                 user_id, phase
