@@ -32,7 +32,7 @@ async def sign_up(
             SELECT COUNT(*)
                 FROM requests
                 WHERE
-                    user_id = :user_id,
+                    user_id = :user_id AND
                     phase = :phase;
         """, {
             'user_id': interaction.user.id,
