@@ -10,7 +10,7 @@ class Country(enum.Enum):
     greece = "Greece"
     italy = "Italy"
     japan = "Japan"
-    kuomintang  = "Kuomintang "
+    kuomintang  = "Kuomintang"
     mexico = "Mexico"
     persia = "Persia"
     peru = "Peru"
