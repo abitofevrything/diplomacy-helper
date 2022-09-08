@@ -26,7 +26,14 @@ async def sign_up(
         ))
 
     with sqlite3.connect("database.sqlite3") as db:
-        phase = db.execute("SELECT MAX(phase) FROM current_phase;").fetchone()[0]
+        phase, active = db.execute("SELECT MAX(phase), active FROM current_phase;").fetchone()
+
+        if active == 0:
+            return await interaction.response.send_message(embed=discord.Embed(
+                title='Phase not open',
+                description='You cannot currently request countries. Try again later.',
+                color=discord.Color.red(),
+            ))
 
         existing = db.execute("""
             SELECT COUNT(*)

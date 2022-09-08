@@ -7,6 +7,7 @@ from discord.ext import commands
 
 from commands.ping import ping
 from commands.sign_up import sign_up
+from commands.open import open
 from database import setup_database
 
 async def main():
@@ -24,6 +25,7 @@ async def main():
 
     bot.tree.add_command(sign_up)
     bot.tree.add_command(ping)
+    bot.tree.add_command(open)
     
     await bot.login(os.environ['TOKEN'])
 

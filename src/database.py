@@ -35,3 +35,11 @@ def setup_database():
 
             db.execute("PRAGMA user_version = 1;")
         
+        if version < 2:
+            db.execute("""
+                ALTER TABLE current_phase
+                    ADD COLUMN active INTEGER NOT NULL DEFAULT 0;
+            """)
+            
+            db.execute("PRAGMA user_version = 2;")
+        
