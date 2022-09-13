@@ -5,6 +5,7 @@ import discord
 from discord import utils
 from discord.ext import commands
 
+from commands.assign import assign
 from commands.ping import ping
 from commands.sign_up import sign_up
 from commands.open import open
@@ -28,6 +29,7 @@ async def main():
     bot.tree.add_command(ping)
     bot.tree.add_command(open)
     bot.tree.add_command(view)
+    bot.tree.add_command(assign)
     
     await bot.login(os.environ['TOKEN'])
 
